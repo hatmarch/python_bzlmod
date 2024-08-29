@@ -1,1 +1,1 @@
-build --enable_bzlmod=false
+build --enable_bzlmod=true
