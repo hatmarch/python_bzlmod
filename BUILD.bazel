@@ -1,0 +1,45 @@
+load("@python_3_11//:defs.bzl", py_binary_3_11 = "py_binary")
+load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test")
+load("//custom_rules:wrapped_py.bzl", "wrapped_py_library", "unwrapped_py_library")
+
+
+py_library(
+    name = "my_lib",
+    srcs = [
+        "test_lib.py"
+    ]
+)
+
+wrapped_py_library(
+    name = "wrap_lib",
+    dep = ":my_lib"
+)
+
+unwrapped_py_library(
+    name = "unwrap_lib",
+    dep = ":wrap_lib"
+)
+
+# will fail to build
+unwrapped_py_library(
+    name = "unwrap_lib_fail",
+    dep = ":my_lib"
+)
+
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    deps = [
+        ":unwrap_lib"
+    ]
+)
+
+py_binary_3_11(
+    name = "main_3_11",
+    srcs = ["main.py"],
+    main = "main.py",
+    deps = [
+        ":my_lib"
+    ]
+)
