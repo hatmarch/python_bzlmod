@@ -1,0 +1,53 @@
+load("@python//3.11:defs.bzl", py_binary_3_11 = "py_binary")
+load("@python//3.12:defs.bzl", py_binary_3_12 = "py_binary")
+load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test")
+
+
+py_library(
+    name = "my_lib",
+    srcs = [
+        "test_lib.py"
+    ],
+    deps = [
+        "@module_1_pypi//pydantic",
+        "@module_1_pypi//requests",
+    ]
+)
+
+py_binary_3_11(
+    name = "main_3_11",
+    srcs = ["main.py"],
+    main = "main.py",
+    deps = [
+        ":my_lib"
+    ]
+)
+
+py_binary_3_11(
+    name = "main_3_11_dbg",
+    srcs = ["main.py"],
+    main = "main.py",
+    deps = [
+        ":my_lib",
+        "@module_1_pypi//debugpy"
+    ]
+)
+
+py_binary_3_12(
+    name = "main_3_12",
+    srcs = ["main.py"],
+    main = "main.py",
+    deps = [
+        ":my_lib"
+    ]
+)
+
+py_binary_3_12(
+    name = "main_3_12_dbg",
+    srcs = ["main.py"],
+    main = "main.py",
+    deps = [
+        ":my_lib",
+        "@module_1_pypi//debugpy"
+    ]
+)

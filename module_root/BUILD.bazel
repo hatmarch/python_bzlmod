@@ -49,11 +49,31 @@ py_binary_3_11(
     ]
 )
 
+py_binary_3_11(
+    name = "main_3_11_dbg",
+    srcs = ["main.py"],
+    main = "main.py",
+    deps = [
+        ":my_lib",
+        "@pypi//debugpy"
+    ]
+)
+
 py_binary_3_12(
     name = "main_3_12",
     srcs = ["main.py"],
     main = "main.py",
     deps = [
         ":my_lib"
+    ]
+)
+
+py_binary_3_12(
+    name = "main_3_12_dbg",
+    srcs = ["main.py"],
+    main = "main.py",
+    deps = [
+        ":my_lib",
+        "@pypi//debugpy"
     ]
 )
