@@ -1,71 +1,71 @@
 load("@python//3.11:defs.bzl", py_binary_3_11 = "py_binary")
 load("@python//3.12:defs.bzl", py_binary_3_12 = "py_binary")
 load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test")
-load("//custom_rules:wrapped_py.bzl", "wrapped_py_library", "unwrapped_py_library")
-
+load("//custom_rules:wrapped_py.bzl", "unwrapped_py_library", "wrapped_py_library")
 
 py_library(
     name = "my_lib",
     srcs = [
-        "test_lib.py"
+        "test_lib.py",
     ],
     deps = [
+        "@pypi//requests",
         "@pypi//websockets",
-        "@pypi//requests"        
-    ]
+        "@pypi//pydantic",
+    ],
 )
 
 wrapped_py_library(
     name = "wrap_lib",
-    dep = ":my_lib"
+    dep = ":my_lib",
 )
 
 unwrapped_py_library(
     name = "unwrap_lib",
-    dep = ":wrap_lib"
+    dep = ":wrap_lib",
 )
 
 # will fail to build
 unwrapped_py_library(
     name = "unwrap_lib_fail",
-    dep = ":my_lib"
+    dep = ":my_lib",
 )
-
 
 py_binary(
     name = "main",
     srcs = ["main.py"],
     deps = [
-        ":unwrap_lib"
-    ]
+        ":unwrap_lib",
+    ],
 )
+
+COMMON_BINARY_DEPS = [
+    ":my_lib",
+    "@module_1//python:my_lib",
+#    "@pypi//pydantic",
+]
 
 py_binary_3_11(
     name = "main_3_11",
     srcs = ["main.py"],
     main = "main.py",
-    deps = [
-        ":my_lib"
-    ]
+    deps = COMMON_BINARY_DEPS,
 )
 
 py_binary_3_11(
     name = "main_3_11_dbg",
     srcs = ["main.py"],
     main = "main.py",
-    deps = [
-        ":my_lib",
-        "@pypi//debugpy"
-    ]
+    deps = COMMON_BINARY_DEPS + [
+        "@pypi//debugpy",
+    ],
 )
 
 py_binary_3_12(
     name = "main_3_12",
     srcs = ["main.py"],
     main = "main.py",
-    deps = [
-        ":my_lib"
-    ]
+    deps = COMMON_BINARY_DEPS,
 )
 
 py_binary_3_12(
@@ -74,6 +74,6 @@ py_binary_3_12(
     main = "main.py",
     deps = [
         ":my_lib",
-        "@pypi//debugpy"
-    ]
+        "@pypi//debugpy",
+    ],
 )

@@ -1,5 +1,11 @@
 from test_lib import TestClass
+from python.test_lib import TestClass as Module1TestClass
 import sys
+# try:
+#     from pydantic import v1 as pydantic
+# except:
+#     import pydantic
+#import pydantic
 
 try:
     import debugpy
@@ -13,7 +19,10 @@ except:
 
 def main():
     test = TestClass()
-    print (f"Python version: {test.py_version()}")
+    test_module_1 = Module1TestClass()
+    print (f"Python version (root): {test.py_version()}")
+    print (f"Python version (module 1): {test_module_1.py_version()}")
+    #print (f"Pydantic version: {pydantic.VERSION}")
     print (f"Local version: {sys.version}")
     print (f"Command: {sys.argv[0]}")
 
