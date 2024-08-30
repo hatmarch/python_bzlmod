@@ -7,11 +7,11 @@ py_library(
     name = "my_lib",
     visibility = ["//visibility:public"],
     srcs = [
-        "test_lib.py"
+        "module_2_test_lib.py"
     ],
     deps = [
-        "@module_1_pypi//pydantic",
-        "@module_1_pypi//requests",
+        "@module_2_pypi//pydantic",
+        "@module_2_pypi//requests",
     ]
 )
 
@@ -20,8 +20,7 @@ py_binary_3_11(
     srcs = ["main.py"],
     main = "main.py",
     deps = [
-        ":my_lib",
-        "@module_2//python_2:my_lib"
+        ":my_lib"
     ]
 )
 
@@ -31,8 +30,7 @@ py_binary_3_11(
     main = "main.py",
     deps = [
         ":my_lib",
-        "@module_2//python_2:my_lib",
-        "@module_1_pypi//debugpy"
+        "@module_2_pypi//debugpy"
     ]
 )
 
@@ -51,6 +49,6 @@ py_binary_3_12(
     main = "main.py",
     deps = [
         ":my_lib",
-        "@module_1_pypi//debugpy"
+        "@module_2_pypi//debugpy"
     ]
 )

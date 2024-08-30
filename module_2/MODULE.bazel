@@ -1,14 +1,9 @@
 module(
-    name = "module_1",
+    name = "module_2",
     version = "0.0",
 )
 
 bazel_dep(name = "rules_python", version = "0.35.0")
-bazel_dep(name="module_2", version="0.0.0")
-local_path_override(
-    module_name = "module_2",
-    path = "../module_2",
-)
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 python.toolchain(
@@ -28,15 +23,15 @@ use_repo(
 pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
 
 pip.parse(
-    hub_name = "module_1_pypi",
+    hub_name = "module_2_pypi",
     python_version = "3.11",
-    requirements_lock = "//python/requirements:requirements_lock_3_11.txt",
+    requirements_lock = "//python_2/requirements:requirements_lock_3_11.txt",
 )
 
 pip.parse(
-    hub_name = "module_1_pypi",
+    hub_name = "module_2_pypi",
     python_version = "3.12",
-    requirements_lock = "//python/requirements:requirements_lock_3_12.txt",
+    requirements_lock = "//python_2/requirements:requirements_lock_3_12.txt",
 )
 
-use_repo(pip, "module_1_pypi")
+use_repo(pip, "module_2_pypi")

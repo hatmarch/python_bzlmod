@@ -1,6 +1,6 @@
 {
   "lockFileVersion": 6,
-  "moduleFileHash": "965a7634a670122029aa347c307b24911a610f09d9e7c51a107e55ec8cbbf023",
+  "moduleFileHash": "b8aea02dc3e15929071c046640a3f5568f79c5cae615cd626384ab584219ef72",
   "flags": {
     "cmdRegistries": [
       "https://bcr.bazel.build/"
@@ -13,6 +13,7 @@
     "compatibilityMode": "ERROR"
   },
   "localOverrideHashes": {
+    "module_2": "74a394285f7b3473db88d3f0909183d557145d4ec02a6c433448bc175dd9cb02",
     "bazel_tools": "1ae69322ac3823527337acf02016e8ee95813d8d356f47060255b8956fa642f0"
   },
   "moduleDepGraph": {
@@ -30,7 +31,7 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 8,
+            "line": 13,
             "column": 23
           },
           "imports": {
@@ -48,7 +49,7 @@
               "devDependency": false,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 9,
+                "line": 14,
                 "column": 17
               }
             },
@@ -61,7 +62,7 @@
               "devDependency": false,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 14,
+                "line": 19,
                 "column": 17
               }
             }
@@ -75,7 +76,7 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 23,
+            "line": 28,
             "column": 20
           },
           "imports": {
@@ -93,7 +94,7 @@
               "devDependency": false,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 25,
+                "line": 30,
                 "column": 10
               }
             },
@@ -107,7 +108,7 @@
               "devDependency": false,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 31,
+                "line": 36,
                 "column": 10
               }
             }
@@ -118,6 +119,7 @@
       ],
       "deps": {
         "rules_python": "rules_python@0.35.0",
+        "module_2": "module_2@_",
         "bazel_tools": "bazel_tools@_",
         "local_config_platform": "local_config_platform@_"
       }
@@ -258,6 +260,112 @@
           },
           "remote_patch_strip": 1
         }
+      }
+    },
+    "module_2@_": {
+      "name": "module_2",
+      "version": "0.0",
+      "key": "module_2@_",
+      "repoName": "module_2",
+      "executionPlatformsToRegister": [],
+      "toolchainsToRegister": [],
+      "extensionUsages": [
+        {
+          "extensionBzlFile": "@rules_python//python/extensions:python.bzl",
+          "extensionName": "python",
+          "usingModule": "module_2@_",
+          "location": {
+            "file": "@@module_2~//:MODULE.bazel",
+            "line": 8,
+            "column": 23
+          },
+          "imports": {
+            "python": "python_versions"
+          },
+          "devImports": [],
+          "tags": [
+            {
+              "tagName": "toolchain",
+              "attributeValues": {
+                "configure_coverage_tool": true,
+                "is_default": true,
+                "python_version": "3.11"
+              },
+              "devDependency": false,
+              "location": {
+                "file": "@@module_2~//:MODULE.bazel",
+                "line": 9,
+                "column": 17
+              }
+            },
+            {
+              "tagName": "toolchain",
+              "attributeValues": {
+                "configure_coverage_tool": true,
+                "python_version": "3.12"
+              },
+              "devDependency": false,
+              "location": {
+                "file": "@@module_2~//:MODULE.bazel",
+                "line": 14,
+                "column": 17
+              }
+            }
+          ],
+          "hasDevUseExtension": false,
+          "hasNonDevUseExtension": true
+        },
+        {
+          "extensionBzlFile": "@rules_python//python/extensions:pip.bzl",
+          "extensionName": "pip",
+          "usingModule": "module_2@_",
+          "location": {
+            "file": "@@module_2~//:MODULE.bazel",
+            "line": 23,
+            "column": 20
+          },
+          "imports": {
+            "module_2_pypi": "module_2_pypi"
+          },
+          "devImports": [],
+          "tags": [
+            {
+              "tagName": "parse",
+              "attributeValues": {
+                "hub_name": "module_2_pypi",
+                "python_version": "3.11",
+                "requirements_lock": "//python_2/requirements:requirements_lock_3_11.txt"
+              },
+              "devDependency": false,
+              "location": {
+                "file": "@@module_2~//:MODULE.bazel",
+                "line": 25,
+                "column": 10
+              }
+            },
+            {
+              "tagName": "parse",
+              "attributeValues": {
+                "hub_name": "module_2_pypi",
+                "python_version": "3.12",
+                "requirements_lock": "//python_2/requirements:requirements_lock_3_12.txt"
+              },
+              "devDependency": false,
+              "location": {
+                "file": "@@module_2~//:MODULE.bazel",
+                "line": 31,
+                "column": 10
+              }
+            }
+          ],
+          "hasDevUseExtension": false,
+          "hasNonDevUseExtension": true
+        }
+      ],
+      "deps": {
+        "rules_python": "rules_python@0.35.0",
+        "bazel_tools": "bazel_tools@_",
+        "local_config_platform": "local_config_platform@_"
       }
     },
     "bazel_tools@_": {

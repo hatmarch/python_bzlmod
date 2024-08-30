@@ -16,7 +16,8 @@
             "debugAdapterPath": "",
             "pathMappings": [
                 {
-                    "localRoot": "${fileDirname}",
+                    //"localRoot": "${fileDirname}",
+                    "localRoot": "${workspaceFolder}/module_1",
                     "remoteRoot": ".",
                 }
             ],

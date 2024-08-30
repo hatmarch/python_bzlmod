@@ -9,6 +9,11 @@ local_path_override(
     module_name = "module_1",
     path = "../module_1",
 )
+# weird that this is needed even though a transitive dependency...
+local_path_override(
+    module_name = "module_2",
+    path = "../module_2",
+)
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 python.toolchain(
