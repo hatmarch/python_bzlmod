@@ -1,6 +1,19 @@
 @startuml
+skinparam componentStyle rectangle
+[module_root] as R
+[module_1] as M1
+[module_2] as M2
 
-DataAccess - [First Component]
-[First Component] ..> HTTP : use
+R -> M1: bazel_dep
+M1 -> M2: bazel_dep
 
+note bottom of R
+imports pydantic 1.9.2
+end note
+
+note bottom of M1
+imports pydantic 2.0
+end note
+
+note bottom of M2: imports pydantic 2.8.2
 @enduml
