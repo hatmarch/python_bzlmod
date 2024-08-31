@@ -2,9 +2,7 @@
 
 ## Experiment one: mixed closures
 
-It looks like either:
--> the pydantic version of the importing module is the one that wins
-X The highest version of the model wins
+It looks like the pydantic version of the importing module is the one that wins.  However, it may be simply that whichever closure is first in the `PYTHONPATH` is what gets used for a given wheel (which means this is somewhat non deterministic)
 
 Pydantic when run in the module_1 module:
 ```
